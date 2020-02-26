@@ -1,2 +1,10 @@
 # grafana-loki-docker-compose
-run grafana and loki in docker containers
+
+                          "pleas follow"
+                          
+                          
+docker-compose up -d --build
+
+username: admin
+
+password: admin
