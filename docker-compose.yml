@@ -1,0 +1,40 @@
+version: "3.4"
+services:
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: "GRAFANA-DOCKER"
+    environment:
+      - GF_EXPLORE_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin 
+    volumes:
+      - ./grafana_data:/var/lib/grafana 
+    restart: always
+    ports:
+      - 3001:3000
+    networks:
+      - grafana
+
+  loki:
+    image: grafana/loki:latest
+    container_name: "LOKI-DOCKER"
+    volumes:
+      - ./local-config.yaml:/etc/loki/local-config.yaml
+    command: 
+      - '--config.file=/etc/loki/local-config.yaml'
+    restart: always
+    ports:
+      - "3100:3100"
+    networks:
+      - grafana
+
+networks:
+  grafana:
+    driver: bridge
+      
+
+
+
+
+
+
